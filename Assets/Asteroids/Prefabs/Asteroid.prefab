@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid
       objectReference: {fileID: 0}
+    - target: {fileID: 1875134094539988, guid: 20bc67712a091434d92900911e095610, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4116898488729126, guid: 20bc67712a091434d92900911e095610, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -87,7 +91,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4444962380846510913}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 133.30643

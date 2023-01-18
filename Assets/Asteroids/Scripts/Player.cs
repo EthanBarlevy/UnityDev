@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField, Range(1, 100), Tooltip("Controls the speed of the player")] float speed = 5;
     public float rotationRate = 90;
     public GameObject prefab;
-    public Transform bulletSpawnLocation;
+    public Transform bulletSpawnLocationL;
+    public Transform bulletSpawnLocationR;
 
     private void Awake()
     {
@@ -38,7 +39,16 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             //GetComponent<AudioSource>().Play();
-            GameObject go = Instantiate(prefab, bulletSpawnLocation.position, bulletSpawnLocation.rotation);
+            GameObject go = Instantiate(prefab, bulletSpawnLocationL.position, bulletSpawnLocationL.rotation);
+            GameObject go1 = Instantiate(prefab, bulletSpawnLocationR.position, bulletSpawnLocationR.rotation);
         }
     }
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("Enemy"))
+		{
+			FindObjectOfType<AsteroidManager>()?.SetGameOver();
+		}
+	}
 }
