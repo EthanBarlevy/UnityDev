@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class RollerPlayer : MonoBehaviour
 {
+    [SerializeField] private float maxForce = 5;
+    [SerializeField] private Transform view;
+
     private Vector3 force;
     private Rigidbody rb;
-    [SerializeField] private float maxForce = 5;
+    private int score;
 
     void Start()
     {
@@ -20,7 +25,8 @@ public class RollerPlayer : MonoBehaviour
         direction.x = Input.GetAxis("Horizontal");
         direction.z = Input.GetAxis("Vertical");
 
-        force = direction * maxForce;
+        Quaternion viewSpace = Quaternion.AngleAxis(view.rotation.eulerAngles.y, Vector3.up);
+        force = viewSpace * direction * maxForce;
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -31,5 +37,11 @@ public class RollerPlayer : MonoBehaviour
     private void FixedUpdate()
     { 
         rb.AddForce(force);
+    }
+
+    public void AddPoints(int points)
+    {
+        score += points;
+        Debug.Log(score);
     }
 }
