@@ -27,5 +27,6 @@ public class RollerCamera : MonoBehaviour
     public void setTarget(Transform target)
     { 
         this.target = target;
+        yaw = target.rotation.eulerAngles.y;
     }
 }

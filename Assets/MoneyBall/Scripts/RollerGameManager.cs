@@ -8,6 +8,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
 {
     [SerializeField] private Slider healthMeter;
     [SerializeField] private TMP_Text scoreUI;
+    [SerializeField] private GameObject gameOverUI;
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform playerStart;
@@ -25,5 +26,10 @@ public class RollerGameManager : Singleton<RollerGameManager>
     public void setScore(int score)
     {
         scoreUI.text = score.ToString();
+    }
+
+    public void SetGameOver()
+    {
+        gameOverUI.SetActive(true);
     }
 }

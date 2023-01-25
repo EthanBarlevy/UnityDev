@@ -9,6 +9,9 @@ public class RollerPlayer : MonoBehaviour
     [SerializeField] private float maxForce = 5;
     [SerializeField] private Transform view;
 
+    [SerializeField] private float groundRayLength = 1;
+    [SerializeField] private LayerMask groundLayer;
+
     private Vector3 force;
     private Rigidbody rb;
     private int score;
@@ -18,6 +21,10 @@ public class RollerPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         view = Camera.main.transform;
         Camera.main.GetComponent<RollerCamera>().setTarget(transform);
+
+        GetComponent<Health>().onDamage += OnDamage;
+        GetComponent<Health>().onDeath += OnDeath;
+        RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
     }
 
     void Update()
@@ -30,12 +37,15 @@ public class RollerPlayer : MonoBehaviour
         Quaternion viewSpace = Quaternion.AngleAxis(view.rotation.eulerAngles.y, Vector3.up);
         force = viewSpace * direction * maxForce;
 
-        if (Input.GetButtonDown("Jump"))
+        Ray ray = new Ray(transform.position, Vector3.down);
+        bool onGround = Physics.Raycast(ray, groundRayLength, groundLayer);
+        Debug.DrawRay(transform.position, ray.direction * groundRayLength);
+
+        if (onGround && Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector3.up * 4, ForceMode.Impulse);
         }
 
-        RollerGameManager.Instance.setHealth(50);
     }
 
     private void FixedUpdate()
@@ -47,5 +57,15 @@ public class RollerPlayer : MonoBehaviour
     {
         score += points;
         RollerGameManager.Instance.setScore(score);
+    }
+
+    public void OnDamage()
+    {
+        RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
+    }
+
+    public void OnDeath()
+    {
+        RollerGameManager.Instance.SetGameOver();
     }
 }
