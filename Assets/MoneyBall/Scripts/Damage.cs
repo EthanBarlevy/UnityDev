@@ -5,7 +5,7 @@ public class Damage : Interactable
 {
 	[SerializeField] float damage = 0;
 	[SerializeField] bool oneTime = true;
- 
+
 	void Start()
 	{
 		GetComponent<CollisionEvent>().onEnter += OnInteract;
