@@ -24,6 +24,7 @@ public class RollerPlayer : MonoBehaviour
 
         GetComponent<Health>().onDamage += OnDamage;
         GetComponent<Health>().onDeath += OnDeath;
+        GetComponent<Health>().onHeal += OnHeal;
         RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
     }
 
@@ -63,9 +64,15 @@ public class RollerPlayer : MonoBehaviour
     {
         RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
     }
-
-    public void OnDeath()
+	public void OnDeath()
     {
         RollerGameManager.Instance.SetGameOver();
+        Destroy(gameObject);
     }
+
+	public void OnHeal()
+	{
+		RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
+	}
+
 }

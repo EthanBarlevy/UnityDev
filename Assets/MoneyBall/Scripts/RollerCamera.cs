@@ -11,8 +11,10 @@ public class RollerCamera : MonoBehaviour
 
     private float yaw = 0;
 
-    void Update()
+    void LateUpdate()
     {
+        if (target == null) return;
+
         yaw += Input.GetAxis("Mouse X") * sensitivity;
         Quaternion qYaw = Quaternion.AngleAxis(yaw, Vector3.up);
         Quaternion qPitch = Quaternion.AngleAxis(pitch, Vector3.right);
