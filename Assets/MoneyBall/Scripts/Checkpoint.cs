@@ -1,23 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CollisionEvent))]
-public class Checkpoint : Interactable
+public class Checkpoint : MonoBehaviour
 {
-    void Start()
-    {
-        GetComponent<CollisionEvent>().onEnter += OnInteract;
-    }
+    [SerializeField] Transform StartLocation;
 
-    public override void OnInteract(GameObject target)
-    {
-        if (target.TryGetComponent<RollerGameManager>(out RollerGameManager manager))
-        {
-            manager.OnCheckpointGet(transform);
-        }
+    public Action onNewCheckpoint;
 
-        if (interactFX != null) Instantiate(interactFX, transform.position, Quaternion.identity);
-        if (destroyOnInteract) Destroy(gameObject);
+    public void OnCheckpointGet(Transform transform)
+    {
+        StartLocation = transform;
     }
 }

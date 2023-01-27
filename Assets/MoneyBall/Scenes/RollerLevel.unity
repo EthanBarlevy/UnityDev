@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38496128, g: 0.6009269, b: 0.6361861, a: 1}
+  m_IndirectSpecularColor: {r: 0.38495585, g: 0.6009152, b: 0.63617694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 358164767}
   - component: {fileID: 358164766}
   - component: {fileID: 358164765}
-  - component: {fileID: 358164764}
+  - component: {fileID: 358164769}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -463,20 +463,6 @@ Transform:
   m_Father: {fileID: 2122389480}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &358164764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358164762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a19a4cbc1799dd847bc236661858c839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactFX: {fileID: 0}
-  destroyOnInteract: 0
 --- !u!114 &358164765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +539,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358164762}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &358164769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358164762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793bf1b56d6d0094f8a177336d27bbd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactFX: {fileID: 0}
+  destroyOnInteract: 1
 --- !u!1001 &389155638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2941,7 +2941,9 @@ GameObject:
   m_Component:
   - component: {fileID: 786999800}
   - component: {fileID: 786999799}
+  - component: {fileID: 786999803}
   - component: {fileID: 786999801}
+  - component: {fileID: 786999802}
   m_Layer: 0
   m_Name: RollerGameManager
   m_TagString: Untagged
@@ -3080,6 +3082,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &786999802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786999798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0d8a42506a8f04ea2f94925cbcb24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTagName: 
+--- !u!114 &786999803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786999798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a19a4cbc1799dd847bc236661858c839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartLocation: {fileID: 1422292845}
 --- !u!1 &832708111
 GameObject:
   m_ObjectHideFlags: 0
@@ -5068,7 +5096,7 @@ GameObject:
   - component: {fileID: 1274715232}
   - component: {fileID: 1274715231}
   - component: {fileID: 1274715230}
-  - component: {fileID: 1274715229}
+  - component: {fileID: 1274715234}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -5091,20 +5119,6 @@ Transform:
   m_Father: {fileID: 2122389480}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1274715229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274715227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a19a4cbc1799dd847bc236661858c839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactFX: {fileID: 0}
-  destroyOnInteract: 0
 --- !u!114 &1274715230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5181,6 +5195,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274715227}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1274715234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274715227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793bf1b56d6d0094f8a177336d27bbd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactFX: {fileID: 0}
+  destroyOnInteract: 1
 --- !u!1001 &1327483188
 PrefabInstance:
   m_ObjectHideFlags: 0
