@@ -15,12 +15,15 @@ public class RollerGameManager : Singleton<RollerGameManager>
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform playerStart;
+    [SerializeField] private int maxLives;
+    private int lives;
 
     public enum State
     { 
         TITLE,
         START_GAME,
         PLAY_GAME,
+        RESET_PLAYER,
         GAME_OVER
     }
 
@@ -44,10 +47,16 @@ public class RollerGameManager : Singleton<RollerGameManager>
                 titleUI.SetActive(false);
 				Cursor.lockState = CursorLockMode.Locked;
                 Instantiate(playerPrefab, playerStart.position, playerStart.rotation);
+                lives = maxLives;
                 state = State.PLAY_GAME;
 				break;
             case State.PLAY_GAME:
                 //
+                break;
+            case State.RESET_PLAYER:
+                Cursor.lockState = CursorLockMode.Locked;
+                Instantiate(playerPrefab, playerStart.position, playerStart.rotation);
+                state = State.PLAY_GAME;
                 break;
             case State.GAME_OVER:
 				gameOverUI.SetActive(true);
@@ -81,9 +90,28 @@ public class RollerGameManager : Singleton<RollerGameManager>
         stateTimer = 3;
     }
 
+    public void SetResetPlayer()
+    {
+        if (lives > 0)
+        {
+            state = State.RESET_PLAYER;
+            lives--;
+        }
+        else
+        {
+            SetGameOver();
+        }
+    }
+
     public void onStartGame()
     {
 		gameMusic.Play();
 		state = State.START_GAME;
+    }
+
+    public void OnCheckpointGet(Transform newSpawn)
+    {
+        playerStart = newSpawn;
+        Debug.Log(newSpawn.ToString());
     }
 }

@@ -15,6 +15,7 @@ public class RollerPlayer : MonoBehaviour
     private Vector3 force;
     private Rigidbody rb;
     private int score;
+    
 
     void Start()
     {
@@ -66,7 +67,7 @@ public class RollerPlayer : MonoBehaviour
     }
 	public void OnDeath()
     {
-        RollerGameManager.Instance.SetGameOver();
+        RollerGameManager.Instance.SetResetPlayer();
         Destroy(gameObject);
     }
 
@@ -74,5 +75,4 @@ public class RollerPlayer : MonoBehaviour
 	{
 		RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
 	}
-
 }
