@@ -12,7 +12,7 @@ public class CheckpointPickup : Interactable
 
     public override void OnInteract(GameObject target)
     {
-        GetComponent<Checkpoint>().OnCheckpointGet(transform);
+        FindObjectOfType<Checkpoint>().OnCheckpointGet(transform);
 
         if (interactFX != null) Instantiate(interactFX, transform.position, Quaternion.identity);
         if (destroyOnInteract) Destroy(gameObject);
