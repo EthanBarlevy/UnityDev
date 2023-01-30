@@ -45,7 +45,8 @@ public class RollerPlayer : MonoBehaviour
 
         if (onGround && Input.GetButtonDown("Jump"))
         {
-            rb.AddForce(Vector3.up * 4, ForceMode.Impulse);
+            Debug.Log("pressed");
+            //rb.AddForce(Vector3.up * 4, ForceMode.Impulse);
         }
 
     }
