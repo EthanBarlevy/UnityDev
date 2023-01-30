@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2919582196831027166}
   - component: {fileID: 2919582196831027164}
   - component: {fileID: 1768047769817422175}
+  - component: {fileID: 6841859791353631342}
   - component: {fileID: 2919582196831027161}
   - component: {fileID: 2919582196831027160}
   - component: {fileID: 2919582196831027163}
-  - component: {fileID: 6841859791353631342}
   - component: {fileID: 2919582196831027167}
   - component: {fileID: 1265820972206832832}
   m_Layer: 0
@@ -74,6 +74,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &6841859791353631342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2919582196831027162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6a5da63273100418f9576abb3d5cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LifeObjects:
+  - {fileID: 6622696650006757297}
+  - {fileID: 1819136336778518585}
+  - {fileID: 5063835895525879913}
 --- !u!33 &2919582196831027161
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -137,22 +153,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6841859791353631342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2919582196831027162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d6a5da63273100418f9576abb3d5cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeObjects:
-  - {fileID: 6622696650006757297}
-  - {fileID: 1819136336778518585}
-  - {fileID: 5063835895525879913}
 --- !u!54 &2919582196831027167
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -458,6 +458,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fe7df9a694d3e0048b8dfd51c8f09258, type: 3}
       propertyPath: m_Name
       value: Life1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe7df9a694d3e0048b8dfd51c8f09258, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe7df9a694d3e0048b8dfd51c8f09258, type: 3}

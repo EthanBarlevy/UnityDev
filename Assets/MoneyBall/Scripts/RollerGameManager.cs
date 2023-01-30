@@ -13,6 +13,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
 
     [SerializeField] private AudioSource gameMusic;
     [SerializeField] public Transform playerStartGame;
+    [SerializeField] EventRouter winGameEvent;
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private int maxLives;
@@ -32,6 +33,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
 
     public void Start()
     {
+        winGameEvent.onEvent += SetGameWin;
     }
 
 	private void Update()
@@ -49,6 +51,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
                 GetComponent<Checkpoint>().StartLocation = playerStartGame;
                 Instantiate(playerPrefab, GetComponent<Checkpoint>().StartLocation.position, GetComponent<Checkpoint>().StartLocation.rotation);
                 lives = maxLives;
+                FindObjectOfType<Lives>().OnLifeLost(lives);
                 state = State.PLAY_GAME;
 				break;
             case State.PLAY_GAME:
@@ -57,6 +60,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
             case State.RESET_PLAYER:
                 Cursor.lockState = CursorLockMode.Locked;
                 Instantiate(playerPrefab, GetComponent<Checkpoint>().StartLocation.position, GetComponent<Checkpoint>().StartLocation.rotation);
+                FindObjectOfType<Lives>().OnLifeLost(lives);
                 state = State.PLAY_GAME;
                 break;
             case State.GAME_OVER:
@@ -97,7 +101,6 @@ public class RollerGameManager : Singleton<RollerGameManager>
         {
             state = State.RESET_PLAYER;
             lives--;
-            FindObjectOfType<Lives>().OnLifeLost(lives);
         }
         else
         {
@@ -109,5 +112,10 @@ public class RollerGameManager : Singleton<RollerGameManager>
     {
 		gameMusic.Play();
 		state = State.START_GAME;
+    }
+
+    public void SetGameWin()
+    {
+        Debug.Log("Win");
     }
 }

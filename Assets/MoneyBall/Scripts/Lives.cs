@@ -4,23 +4,21 @@ using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
-[RequireComponent(typeof(CollisionEvent))]
 public class Lives : MonoBehaviour
 {
     [SerializeField] public List<GameObject> LifeObjects;
 
-    public Action onLifeLost;
-
     public void OnLifeLost(float lives)
     {
+        Debug.Log(lives);
         foreach (var obj in LifeObjects) 
         { 
-            obj.SetActive(false);
+            obj.GetComponent<Renderer>().enabled = false;
         }
 
-        for (int i = 0; i < lives; i++) 
+        for (int i = 0; i < lives; i++)
         {
-            LifeObjects[i].gameObject.SetActive(true);
+            LifeObjects[i].GetComponent<Renderer>().enabled = true;
         }
     }
 }

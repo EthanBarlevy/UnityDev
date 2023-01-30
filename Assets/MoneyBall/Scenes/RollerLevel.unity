@@ -891,7 +891,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24212
+  m_Name: pb_Mesh24208
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2805,6 +2805,7 @@ MonoBehaviour:
   titleUI: {fileID: 862349896}
   gameMusic: {fileID: 786999801}
   playerStartGame: {fileID: 1422292845}
+  winGameEvent: {fileID: 11400000, guid: d3714abd277888542885779c2728224a, type: 2}
   playerPrefab: {fileID: 2919582196831027162, guid: 61b23f5eccfec4841a57361b510bb533, type: 3}
   maxLives: 3
 --- !u!4 &786999800
@@ -3797,7 +3798,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24166
+  m_Name: pb_Mesh24158
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5757,6 +5758,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 566508642}
+  - {fileID: 2022161486}
   m_Father: {fileID: 1329579604}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5832,7 +5834,6 @@ Transform:
   - {fileID: 2010651468}
   - {fileID: 1021876080}
   - {fileID: 832708112}
-  - {fileID: 2022161486}
   m_Father: {fileID: 1329579604}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5846,6 +5847,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1735883691}
   - component: {fileID: 1735883692}
+  - component: {fileID: 1735883694}
+  - component: {fileID: 1735883693}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -5884,6 +5887,35 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1735883693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735883689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0014610662d12ad47a0f2bdd146650b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactFX: {fileID: 0}
+  destroyOnInteract: 1
+  gameEvent: {fileID: 11400000, guid: d3714abd277888542885779c2728224a, type: 2}
+  oneTime: 1
+--- !u!114 &1735883694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735883689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0d8a42506a8f04ea2f94925cbcb24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTagName: Player
 --- !u!1001 &1745004191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6087,7 +6119,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24198
+  m_Name: pb_Mesh24192
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6583,7 +6615,7 @@ MeshCollider:
   m_GameObject: {fileID: 1921591614}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -8625,7 +8657,7 @@ GameObject:
   - component: {fileID: 2022161487}
   - component: {fileID: 2022161492}
   m_Layer: 3
-  m_Name: Platform (3)
+  m_Name: FinalPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8638,14 +8670,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022161485}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: -4.29, y: 8.44, z: -9.89}
   m_LocalScale: {x: 0.2973618, y: 2.32452, z: 0.24533993}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1735883691}
-  m_Father: {fileID: 1720771394}
-  m_RootOrder: 4
+  m_Father: {fileID: 1547576423}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!64 &2022161487
 MeshCollider:
@@ -9501,7 +9533,7 @@ MeshCollider:
   m_GameObject: {fileID: 2106884455}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
