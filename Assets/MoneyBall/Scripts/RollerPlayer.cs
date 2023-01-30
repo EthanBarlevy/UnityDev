@@ -15,7 +15,6 @@ public class RollerPlayer : MonoBehaviour
     private Vector3 force;
     private Rigidbody rb;
     private int score;
-    
 
     void Start()
     {

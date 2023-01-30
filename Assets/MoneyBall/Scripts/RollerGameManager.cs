@@ -12,6 +12,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
     [SerializeField] private GameObject titleUI;
 
     [SerializeField] private AudioSource gameMusic;
+    [SerializeField] public Transform playerStartGame;
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private int maxLives;
@@ -45,6 +46,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
             case State.START_GAME:
                 titleUI.SetActive(false);
 				Cursor.lockState = CursorLockMode.Locked;
+                GetComponent<Checkpoint>().StartLocation = playerStartGame;
                 Instantiate(playerPrefab, GetComponent<Checkpoint>().StartLocation.position, GetComponent<Checkpoint>().StartLocation.rotation);
                 lives = maxLives;
                 state = State.PLAY_GAME;
@@ -95,6 +97,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
         {
             state = State.RESET_PLAYER;
             lives--;
+            FindObjectOfType<Lives>().OnLifeLost(lives);
         }
         else
         {
