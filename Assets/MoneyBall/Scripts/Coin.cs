@@ -17,6 +17,7 @@ public class Coin : Interactable
             player.AddPoints(100);
         }
         if(interactFX != null) Instantiate(interactFX, transform.position, Quaternion.identity);
-        if(destroyOnInteract) Destroy(gameObject);
+        if(soundEffect != null) Instantiate(soundEffect, transform.position, Quaternion.identity);
+        if (destroyOnInteract) Destroy(gameObject);
     }
 }
