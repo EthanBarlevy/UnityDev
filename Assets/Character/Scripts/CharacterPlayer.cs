@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class CharacterPlayer : MonoBehaviour
@@ -13,8 +14,25 @@ public class CharacterPlayer : MonoBehaviour
     [SerializeField] private float jumpHeight = 2;
     
     CharacterController controller;
+    PlayerInputActions playerInput;
     Camera mainCamera;
     Vector3 velocity = Vector3.zero;
+
+    private void Awake()
+    {
+        playerInput = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        playerInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Disable();
+    }
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -24,8 +42,10 @@ public class CharacterPlayer : MonoBehaviour
     void Update()
     {
         Vector3 direction = Vector3.zero;
-        direction.x = Input.GetAxis("Horizontal");
-        direction.z = Input.GetAxis("Vertical");
+        Vector2 axis = playerInput.Player.Move.ReadValue<Vector2>();
+
+        direction.x = axis.x;
+        direction.z = axis.y;
 
         direction = mainCamera.transform.TransformDirection(direction);
 
@@ -33,7 +53,7 @@ public class CharacterPlayer : MonoBehaviour
         {
             velocity.x = direction.x * groundSpeed;
             velocity.z = direction.z * groundSpeed;
-            if (Input.GetButtonDown("Jump"))
+            if (playerInput.Player.Jump.triggered)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -3 * gravity);
             }
