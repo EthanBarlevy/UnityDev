@@ -7,13 +7,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterPlayer : MonoBehaviour
 {
-    [SerializeField] private float groundSpeed = 5;
-    [SerializeField] private float airSpeed = 5;
-    [SerializeField] private float hitForce = 2;
-    [SerializeField] private float gravity = Physics.gravity.y;
-    [SerializeField] private float turnRate = 10;
-    [SerializeField] private float jumpHeight = 2;
-    [SerializeField] private Animator animator;
+	[SerializeField] private PlayerData playerData;
+	[SerializeField] private Animator animator;
     [SerializeField] private InputRouter inputRouter;
     
     CharacterController controller;
@@ -45,15 +40,15 @@ public class CharacterPlayer : MonoBehaviour
 
         if (controller.isGrounded)
         {
-            velocity.x = direction.x * groundSpeed;
-            velocity.z = direction.z * groundSpeed;
+            velocity.x = direction.x * playerData.groundSpeed;
+            velocity.z = direction.z * playerData.groundSpeed;
             inAirTime = 0;
         }
         else
         {
-            velocity.x = direction.x * airSpeed;
-            velocity.z = direction.z * airSpeed;
-            velocity.y += gravity * Time.deltaTime;
+            velocity.x = direction.x * playerData.airSpeed;
+            velocity.z = direction.z * playerData.airSpeed;
+            velocity.y += playerData.gravity * Time.deltaTime;
             inAirTime += Time.deltaTime;
         }
 
@@ -62,7 +57,7 @@ public class CharacterPlayer : MonoBehaviour
         look.y = 0;
         if (look.magnitude > 0)
         { 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look), turnRate * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look), playerData.turnRate * Time.deltaTime);
         }
 
         // set animator parameters
@@ -96,7 +91,7 @@ public class CharacterPlayer : MonoBehaviour
         // then you can also multiply the push velocity by that.
 
         // Apply the push
-        body.velocity = pushDir * hitForce;
+        body.velocity = pushDir * playerData.hitForce;
     }
 
 	public void OnJump()
@@ -104,7 +99,7 @@ public class CharacterPlayer : MonoBehaviour
         if (controller.isGrounded)
         { 
 		    animator.SetTrigger("Jump");
-		    velocity.y = Mathf.Sqrt(jumpHeight * -3 * gravity);
+		    velocity.y = Mathf.Sqrt(playerData.jumpHeight * -3 * playerData.gravity);
         }
 	}
 
