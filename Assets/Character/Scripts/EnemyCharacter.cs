@@ -6,6 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyCharacter : MonoBehaviour
 {
+	[SerializeField] Animator animator;
+
 	private Camera mainCamera;
 	private NavMeshAgent navMeshAgent;
 	private Transform target;
@@ -20,6 +22,8 @@ public class EnemyCharacter : MonoBehaviour
 	void Update()
     {
 		navMeshAgent.SetDestination(target.position);
+		animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
+
         //if(Input.GetMouseButtonDown(0)) 
 		//{ 
 		//	Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
