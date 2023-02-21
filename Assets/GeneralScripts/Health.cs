@@ -6,8 +6,8 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] float maxHealth = 100;
-    
-    public float health {get; set;}
+
+    [SerializeField] public float health {get; set;}
     
     private bool isDead = false;
 
