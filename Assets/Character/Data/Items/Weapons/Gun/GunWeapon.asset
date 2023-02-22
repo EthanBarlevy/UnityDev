@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66a30178795cd22448948bd7c697aa29, type: 3}
-  m_Name: SwordWeapon
+  m_Name: GunWeapon
   m_EditorClassIdentifier: 
-  id: Sword
+  id: Gun
   description: 
   icon: {fileID: 0}
   allowMultiple: 0
+  equipable: 1
   itemType: 1
   usageType: 0
-  animTriggerName: Attack
+  animTriggerName: 
+  animEquipName: GunEquip
   itemPrefab: {fileID: 0}
   pickupPrefab: {fileID: 0}
-  fireRate: 1
+  fireRate: 0.2
   spread: {x: 0.1, y: 0.1, z: 0.1}
   rounds: 0
   ammoPrefab: {fileID: 1418367064928899148, guid: 54a41f90b5b1556438fd54ad1bdb1518, type: 3}
