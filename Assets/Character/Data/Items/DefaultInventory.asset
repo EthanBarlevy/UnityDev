@@ -10,12 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 733487a380c21d6499774a309a9814d5, type: 3}
-  m_Name: Inventory
+  m_Name: DefaultInventory
   m_EditorClassIdentifier: 
   items:
-  - itemData: {fileID: 11400000, guid: 21b3f3d876740ac4b9aee12fe155d07e, type: 2}
-    count: 0
   - itemData: {fileID: 11400000, guid: c069228b32bf09b42ada1e8f020952f9, type: 2}
     count: 0
-  - itemData: {fileID: 11400000, guid: 7cec2da56e3a2d048ac1896ba1ffca01, type: 2}
-    count: 1

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 	[SerializeField] InventoryData inventoryData;
+	[SerializeField] InventoryData defaultInventoryData;
 	[SerializeField] ItemData defaultItemData;
 
 	private Item[] items; // items that are a part of the owner game object (melee weapon, guns)
@@ -13,6 +14,12 @@ public class Inventory : MonoBehaviour
 
 	private void Start()
 	{
+		inventoryData.items.Clear();
+		foreach (var item in defaultInventoryData.items)
+		{ 
+			inventoryData.items.Add(item);
+		}
+
 		// search children for items (items that the owner game object possess)
 		items = GetComponentsInChildren<Item>(true);
 		if (defaultItemData != null)
@@ -67,6 +74,11 @@ public class Inventory : MonoBehaviour
 	{
 		// find item in items with matching item data
 		return items.FirstOrDefault(item => item.GetData() == itemData);
+	}
+
+	public void AddItem(ItemData itemData)
+	{
+		inventoryData.AddItem(itemData);
 	}
 
 	public void Use()
