@@ -4,17 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RollerGameManager : Singleton<RollerGameManager>
+public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private Slider healthMeter;
-    [SerializeField] private TMP_Text scoreUI;
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject titleUI;
-    [SerializeField] private GameObject gameWinUI;
-
     [SerializeField] private AudioSource gameMusic;
     [SerializeField] public Transform playerStartGame;
-    [SerializeField] EventRouter winGameEvent;
+
+    [Header("Events")]
+    [SerializeField] EventRouter GameWinEvent;
+    [SerializeField] EventRouter GameStartEvent;
+    [SerializeField] EventRouter GameEndEvent;
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private int maxLives;
@@ -35,7 +33,7 @@ public class RollerGameManager : Singleton<RollerGameManager>
 
     public void Start()
     {
-        winGameEvent.onEvent += SetGameWin;
+        GameWinEvent.onEvent += SetGameWin;
     }
 
 	private void Update()
@@ -43,17 +41,18 @@ public class RollerGameManager : Singleton<RollerGameManager>
 		switch (state)
         {
             case State.TITLE:
-                titleUI.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
+				UiManager.Instance.ShowTitle(true);
+				Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;
             case State.START_GAME:
-                titleUI.SetActive(false);
+				UiManager.Instance.ShowGameOver(false);
 				Cursor.lockState = CursorLockMode.Locked;
-                GetComponent<Checkpoint>().StartLocation = playerStartGame;
-                Instantiate(playerPrefab, GetComponent<Checkpoint>().StartLocation.position, GetComponent<Checkpoint>().StartLocation.rotation);
+                //GetComponent<Checkpoint>().StartLocation = playerStartGame;
+                //Instantiate(playerPrefab, GetComponent<Checkpoint>().StartLocation.position, GetComponent<Checkpoint>().StartLocation.rotation);
+                Instantiate(playerPrefab, playerStartGame);
                 lives = maxLives;
-                FindObjectOfType<Lives>().OnLifeLost(lives);
+                //FindObjectOfType<Lives>().OnLifeLost(lives);
                 state = State.PLAY_GAME;
 				break;
             case State.PLAY_GAME:
@@ -62,24 +61,24 @@ public class RollerGameManager : Singleton<RollerGameManager>
             case State.RESET_PLAYER:
                 Cursor.lockState = CursorLockMode.Locked;
                 Instantiate(playerPrefab, GetComponent<Checkpoint>().StartLocation.position, GetComponent<Checkpoint>().StartLocation.rotation);
-                FindObjectOfType<Lives>().OnLifeLost(lives);
+                //FindObjectOfType<Lives>().OnLifeLost(lives);
                 state = State.PLAY_GAME;
                 break;
             case State.GAME_OVER:
-				gameOverUI.SetActive(true);
-                stateTimer -= Time.deltaTime;
+				UiManager.Instance.ShowGameOver(true);
+				stateTimer -= Time.deltaTime;
                 if (stateTimer < 0)
-                { 
-                    gameOverUI.SetActive(false);
-                    state = State.TITLE;
+                {
+					UiManager.Instance.ShowGameOver(false);
+					state = State.TITLE;
                 }
 				break;
             case State.GAME_WIN:
-                gameWinUI.SetActive(true);
+                //gameWinUI.SetActive(true);
                 stateTimer -= Time.deltaTime;
                 if (stateTimer < 0)
                 {
-                    gameWinUI.SetActive(false);
+                    //gameWinUI.SetActive(false);
                     state = State.TITLE;
                 }
                 break;
@@ -89,18 +88,9 @@ public class RollerGameManager : Singleton<RollerGameManager>
         }
 	}
 
-	public void setHealth(int health)
-    { 
-        healthMeter.value = Mathf.Clamp(health, 0, 100);
-    }
-
-    public void setScore(int score)
-    {
-        scoreUI.text = score.ToString();
-    }
-
     public void SetGameOver()
     {
+        UiManager.Instance.ShowGameOver(true);
         gameMusic.Stop();
         state = State.GAME_OVER;
         stateTimer = 3;

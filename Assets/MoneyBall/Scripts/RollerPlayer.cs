@@ -25,7 +25,7 @@ public class RollerPlayer : MonoBehaviour
         GetComponent<Health>().onDamage += OnDamage;
         GetComponent<Health>().onDeath += OnDeath;
         GetComponent<Health>().onHeal += OnHeal;
-        RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
+        //RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
     }
 
     void Update()
@@ -58,21 +58,21 @@ public class RollerPlayer : MonoBehaviour
     public void AddPoints(int points)
     {
         score += points;
-        RollerGameManager.Instance.setScore(score);
+        //RollerGameManager.Instance.setScore(score);
     }
 
     public void OnDamage()
     {
-        RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
+        //RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
     }
 	public void OnDeath()
     {
-        RollerGameManager.Instance.SetResetPlayer();
+        //RollerGameManager.Instance.SetResetPlayer();
         Destroy(gameObject);
     }
 
 	public void OnHeal()
 	{
-		RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
+		//RollerGameManager.Instance.setHealth((int)GetComponent<Health>().health);
 	}
 }

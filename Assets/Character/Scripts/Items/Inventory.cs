@@ -81,6 +81,11 @@ public class Inventory : MonoBehaviour
 		inventoryData.AddItem(itemData);
 	}
 
+	public bool Contains(ItemData itemData)
+	{ 
+		return inventoryData.Contains(itemData);
+	}
+
 	public void Use()
 	{
 		if (currentItem == null) return;

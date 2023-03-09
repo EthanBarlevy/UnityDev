@@ -7,6 +7,7 @@ public abstract class Interactable : MonoBehaviour
 	public GameObject interactFX;
 	public GameObject soundEffect;
 	public bool destroyOnInteract = true;
+	public Condition condition;
 
 	public abstract void OnInteract(GameObject target);
 }
